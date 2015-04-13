@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Polyglot Playground]]></title>
+  
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://bkarr.github.io/"/>
+  <updated>2015-04-13T22:45:10.393Z</updated>
+  <id>http://bkarr.github.io/</id>
+  
+  <author>
+    <name><![CDATA[Bryan Karr]]></name>
+    <email><![CDATA[bryan@polyglotplayground.com]]></email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Why this blog?]]></title>
+    <link href="http://bkarr.github.io/2015/04/13/Why-this-blog/"/>
+    <id>http://bkarr.github.io/2015/04/13/Why-this-blog/</id>
+    <published>2015-04-13T19:34:02.000Z</published>
+    <updated>2015-04-13T22:45:10.393Z</updated>
+    <content type="html"><![CDATA[<p>I was first inspired to start this blog after reading several blog posts about steps to take regarding career development.  The posts suggested multiple ways to begin such as learning a new programming language, starting an open source project on github, or begin writing a blog.  Since I really have not done anything regarding career development for several years, I have decided to do all three at once.  </p>
+<p>My first problem with regard to this blog is “what to write about?”  I am not particularly fond of writing as a form of recreation.  Neither do I want to add to the plethora of abandoned blogs of programmers proffering their hard won experience, only to quickly run out of things to say.  So, I need a project to write about since I have no desire to write a software development advice column.</p>
+<p>I also want to explore ideas that had cropped up in my day-to-day work activities as a systems developer, only to be told that “this is not an R&amp;D project.”  Understandably, the company I work for doesn’t have the time and money for me to follow all my ideas to a logical conclusion, especially if they do not work out successfully.  Besides, there are obviously already off-the-shelf software products that will do most of what is needed already to build software using traditional software development techniques, and there are folks that are not fond of my adding my own contributions to the ever increasing pile of infrastructure software we are currently maintaining.  So, I have unfulfilled ambitions regarding alternatives for how software should interact and be built.</p>
+<p>This blog, and its associated projects, are about a specific problem I am choosing to explore.  I want to address how programs that are written in different languages communicate, and, in simplifying those mechanisms, consider how applications might be built differently by assembling them out of communicating parts.  I realize there are lots of approaches to these issues already. I am not promising ground breaking research here; just a running dialogue while I “scratch an itch”, so to speak.  Hopefully, in addition to the blog, you will see working code in my github repositories that will be useful in some context.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I was first inspired to start this blog after reading several blog posts about steps to take regarding career development.  The posts sug]]>
+    </summary>
+    
+      <category term="Personal" scheme="http://bkarr.github.io/categories/Personal/"/>
+    
+  </entry>
+  
+</feed>
