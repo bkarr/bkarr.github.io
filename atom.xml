@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://bkarr.github.io/"/>
-  <updated>2015-04-13T22:45:10.393Z</updated>
+  <updated>2015-04-14T23:08:59.124Z</updated>
   <id>http://bkarr.github.io/</id>
   
   <author>
@@ -15,11 +15,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Development Plans]]></title>
+    <link href="http://bkarr.github.io/2015/04/14/Development-Plans/"/>
+    <id>http://bkarr.github.io/2015/04/14/Development-Plans/</id>
+    <published>2015-04-14T23:08:59.000Z</published>
+    <updated>2015-04-14T23:08:59.124Z</updated>
+    <content type="html"><![CDATA[<p>As I said in my previous post, I would like to explore alternative means of communicating between programs written in different languages, and then using those components to assemble working applications.  </p>
+<p>I see three major steps to this effort:</p>
+<ul>
+<li>develop data structures in shared memory to simplify interprocess communication in C</li>
+<li>use foreign function interfaces in various languages to use those data structures</li>
+<li>develop scripting to assemble programs written in various languages to assemble working applications</li>
+</ul>
+<p>Because there are several shared memory data structures I have in mind, I do not intend to complete each step before proceeding to the next. Rather, I intend to iteratively go through these steps for each data structure.  For example, the first data structure I am building is a new, improved version of the interprocess queue that is simpler to use and much more functional than OS based implementations currently available.  It would be quite useful to at least partially complete steps two and three before moving on to the next data structure.  In fact, the majority of the benefit will come from completing those steps for the shared memory queue.</p>
+<p>The three data structures I have in mind at this point, all to go in the same library, are as follows:</p>
+<ul>
+<li>shared memory queue that can grow dynamically and has no limits on message sizes</li>
+<li>shared memory allocator that allows dynamically allocating portions of memory that can be referenced through a passed token</li>
+<li>shared memory map for storing and accessing key/value pairs using arbitrary data as keys and values</li>
+</ul>
+<p>I am beginning with the shared memory queue because that allows me to pass messages between programs and simulate both Actor and communicating sequential processes (CSP) models of computation.  The shared memory allocator is an idea that occurred to me while considering how I would practically build applications using the queue.  The queue is designed to handle messages of arbitrary length, but the occasional large message would cause all queues it was placed on to grow to an unnecessary size for just that one message.  My solution is allocate space in shared memory associated with a token that can be passed via the queue and to allow the safe access of that memory through the use of the token.  Lastly, the associative shared memory map is on the agenda as a generally useful data structure for building multiple types of applications.  The Lua language, for example, demonstrates the utility of the associative array, or table in its vernacular, for implementing multiple software development paradigms.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>As I said in my previous post, I would like to explore alternative means of communicating between programs written in different languages]]>
+    </summary>
+    
+      <category term="Plans" scheme="http://bkarr.github.io/categories/Plans/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Why this blog?]]></title>
     <link href="http://bkarr.github.io/2015/04/13/Why-this-blog/"/>
     <id>http://bkarr.github.io/2015/04/13/Why-this-blog/</id>
     <published>2015-04-13T19:34:02.000Z</published>
-    <updated>2015-04-13T22:45:10.393Z</updated>
+    <updated>2015-04-14T04:52:28.285Z</updated>
     <content type="html"><![CDATA[<p>I was first inspired to start this blog after reading several blog posts about steps to take regarding career development.  The posts suggested multiple ways to begin such as learning a new programming language, starting an open source project on github, or begin writing a blog.  Since I really have not done anything regarding career development for several years, I have decided to do all three at once.  </p>
 <p>My first problem with regard to this blog is “what to write about?”  I am not particularly fond of writing as a form of recreation.  Neither do I want to add to the plethora of abandoned blogs of programmers proffering their hard won experience, only to quickly run out of things to say.  So, I need a project to write about since I have no desire to write a software development advice column.</p>
 <p>I also want to explore ideas that had cropped up in my day-to-day work activities as a systems developer, only to be told that “this is not an R&amp;D project.”  Understandably, the company I work for doesn’t have the time and money for me to follow all my ideas to a logical conclusion, especially if they do not work out successfully.  Besides, there are obviously already off-the-shelf software products that will do most of what is needed already to build software using traditional software development techniques, and there are folks that are not fond of my adding my own contributions to the ever increasing pile of infrastructure software we are currently maintaining.  So, I have unfulfilled ambitions regarding alternatives for how software should interact and be built.</p>
@@ -28,6 +58,8 @@
     <summary type="html">
     <![CDATA[<p>I was first inspired to start this blog after reading several blog posts about steps to take regarding career development.  The posts sug]]>
     </summary>
+    
+      <category term="blogging" scheme="http://bkarr.github.io/tags/blogging/"/>
     
       <category term="Personal" scheme="http://bkarr.github.io/categories/Personal/"/>
     
