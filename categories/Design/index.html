@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives | Polyglot Playground</title>
+  <title>Category: Design | Polyglot Playground</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Exploring alternatives in building reliable, scaleable, multilanguage, multicore services in the cloud.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Polyglot Playground">
-<meta property="og:url" content="http://bkarr.github.io/archives/index.html">
+<meta property="og:url" content="http://bkarr.github.io/categories/Design/index.html">
 <meta property="og:site_name" content="Polyglot Playground">
 <meta property="og:description" content="Exploring alternatives in building reliable, scaleable, multilanguage, multicore services in the cloud.">
 <meta name="twitter:card" content="summary">
@@ -114,111 +114,6 @@
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/critbit-tree/">critbit tree</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lock-free-queue/">lock-free queue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/semaphore/">semaphore</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Development-Plans" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/04/14/Development-Plans/" class="article-date">
-  <time datetime="2015-04-14T23:08:59.000Z" itemprop="datePublished">Apr 14 2015</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Plans/">Plans</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/14/Development-Plans/">Development Plans</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>As I said in my previous post, I would like to explore alternative means of communicating between programs written in different languages, and then using those components to assemble working applications.  </p>
-<p>I see three major steps to this effort:</p>
-<ul>
-<li>develop data structures in shared memory to simplify interprocess communication in C</li>
-<li>use foreign function interfaces in various languages to use those data structures</li>
-<li>develop scripting to assemble programs written in various languages to assemble working applications</li>
-</ul>
-<p>Because there are several shared memory data structures I have in mind, I do not intend to complete each step before proceeding to the next. Rather, I intend to iteratively go through these steps for each data structure.  For example, the first data structure I am building is a new, improved version of the interprocess queue that is simpler to use and much more functional than OS based implementations currently available.  It would be quite useful to at least partially complete steps two and three before moving on to the next data structure.  In fact, the majority of the benefit will come from completing those steps for the shared memory queue.</p>
-<p>The three data structures I have in mind at this point, all to go in the same library, are as follows:</p>
-<ul>
-<li>shared memory queue that can grow dynamically and has no limits on message sizes</li>
-<li>shared memory allocator that allows dynamically allocating portions of memory that can be referenced through a passed token</li>
-<li>shared memory map for storing and accessing key/value pairs using arbitrary data as keys and values</li>
-</ul>
-<p>I am beginning with the shared memory queue because that allows me to pass messages between programs and simulate both Actor and communicating sequential processes (CSP) models of computation.  The shared memory allocator is an idea that occurred to me while considering how I would practically build applications using the queue.  The queue is designed to handle messages of arbitrary length, but the occasional large message would cause all queues it was placed on to grow to an unnecessary size for just that one message.  My solution is allocate space in shared memory associated with a token that can be passed via the queue and to allow the safe access of that memory through the use of the token.  Lastly, the associative shared memory map is on the agenda as a generally useful data structure for building multiple types of applications.  The Lua language, for example, demonstrates the utility of the associative array, or table in its vernacular, for implementing multiple software development paradigms.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://bkarr.github.io/2015/04/14/Development-Plans/" data-id="ci8l3iz1f000fiw2wjs9emdth" class="article-share-link">Share</a>
-      
-        <a href="http://bkarr.github.io/2015/04/14/Development-Plans/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Why-this-blog" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/04/13/Why-this-blog/" class="article-date">
-  <time datetime="2015-04-13T19:34:02.000Z" itemprop="datePublished">Apr 13 2015</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Personal/">Personal</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/13/Why-this-blog/">Why this blog?</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I was first inspired to start this blog after reading several blog posts about steps to take regarding career development.  The posts suggested multiple ways to begin such as learning a new programming language, starting an open source project on github, or begin writing a blog.  Since I really have not done anything regarding career development for several years, I have decided to do all three at once.  </p>
-<p>My first problem with regard to this blog is “what to write about?”  I am not particularly fond of writing as a form of recreation.  Neither do I want to add to the plethora of abandoned blogs of programmers proffering their hard won experience, only to quickly run out of things to say.  So, I need a project to write about since I have no desire to write a software development advice column.</p>
-<p>I also want to explore ideas that had cropped up in my day-to-day work activities as a systems developer, only to be told that “this is not an R&amp;D project.”  Understandably, the company I work for doesn’t have the time and money for me to follow all my ideas to a logical conclusion, especially if they do not work out successfully.  Besides, there are obviously already off-the-shelf software products that will do most of what is needed already to build software using traditional software development techniques, and there are folks that are not fond of my adding my own contributions to the ever increasing pile of infrastructure software we are currently maintaining.  So, I have unfulfilled ambitions regarding alternatives for how software should interact and be built.</p>
-<p>This blog, and its associated projects, are about a specific problem I am choosing to explore.  I want to address how programs that are written in different languages communicate, and, in simplifying those mechanisms, consider how applications might be built differently by assembling them out of communicating parts.  I realize there are lots of approaches to these issues already. I am not promising ground breaking research here; just a running dialogue while I “scratch an itch”, so to speak.  Hopefully, in addition to the blog, you will see working code in my github repositories that will be useful in some context.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://bkarr.github.io/2015/04/13/Why-this-blog/" data-id="ci8l3iz100001iw2w1y1usfq7" class="article-share-link">Share</a>
-      
-        <a href="http://bkarr.github.io/2015/04/13/Why-this-blog/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blogging/">blogging</a></li></ul>
 
     </footer>
   </div>
