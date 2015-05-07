@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: Personal | Polyglot Playground</title>
+  <title>Code Aesthetics | Polyglot Playground</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Exploring alternatives in building reliable, scaleable, multilanguage, multicore services in the cloud.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Polyglot Playground">
-<meta property="og:url" content="http://bkarr.github.io/categories/Personal/index.html">
+  <meta name="description" content="As I have stated in a previous post, this blog and the associated code project are a kind of experiment or exploration to satisfy my curiousity about ways to actually build applications using multiple">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Code Aesthetics">
+<meta property="og:url" content="http://bkarr.github.io/2015/05/06/Code-Aesthetics/index.html">
 <meta property="og:site_name" content="Polyglot Playground">
-<meta property="og:description" content="Exploring alternatives in building reliable, scaleable, multilanguage, multicore services in the cloud.">
+<meta property="og:description" content="As I have stated in a previous post, this blog and the associated code project are a kind of experiment or exploration to satisfy my curiousity about ways to actually build applications using multiple">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Polyglot Playground">
-<meta name="twitter:description" content="Exploring alternatives in building reliable, scaleable, multilanguage, multicore services in the cloud.">
+<meta name="twitter:title" content="Code Aesthetics">
+<meta name="twitter:description" content="As I have stated in a previous post, this blog and the associated code project are a kind of experiment or exploration to satisfy my curiousity about ways to actually build applications using multiple">
   
     <link rel="alternative" href="/atom.xml" title="Polyglot Playground" type="application/atom+xml">
   
@@ -65,16 +65,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Why-this-blog" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Code-Aesthetics" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/04/13/Why-this-blog/" class="article-date">
-  <time datetime="2015-04-13T19:34:02.000Z" itemprop="datePublished">Apr 13 2015</time>
+    <a href="/2015/05/06/Code-Aesthetics/" class="article-date">
+  <time datetime="2015-05-06T16:11:33.000Z" itemprop="datePublished">May 6 2015</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Personal/">Personal</a>
+    <a class="article-category-link" href="/categories/Opinion/">Opinion</a>
   </div>
 
   </div>
@@ -84,8 +82,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/13/Why-this-blog/">Why this blog?</a>
+    <h1 class="article-title" itemprop="name">
+      Code Aesthetics
     </h1>
   
 
@@ -93,29 +91,46 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I was first inspired to start this blog after reading several blog posts about steps to take regarding career development.  The posts suggested multiple ways to begin such as learning a new programming language, starting an open source project on github, or begin writing a blog.  Since I really have not done anything regarding career development for several years, I have decided to do all three at once.  </p>
-<p>My first problem with regard to this blog is “what to write about?”  I am not particularly fond of writing as a form of recreation.  Neither do I want to add to the plethora of abandoned blogs of programmers proffering their hard won experience, only to quickly run out of things to say.  So, I need a project to write about since I have no desire to write a software development advice column.</p>
-<p>I also want to explore ideas that had cropped up in my day-to-day work activities as a systems developer, only to be told that “this is not an R&amp;D project.”  Understandably, the company I work for doesn’t have the time and money for me to follow all my ideas to a logical conclusion, especially if they do not work out successfully.  Besides, there are obviously already off-the-shelf software products that will do most of what is needed already to build software using traditional software development techniques, and there are folks that are not fond of my adding my own contributions to the ever increasing pile of infrastructure software we are currently maintaining.  So, I have unfulfilled ambitions regarding alternatives for how software should interact and be built.</p>
-<p>This blog, and its associated projects, are about a specific problem I am choosing to explore.  I want to address how programs that are written in different languages communicate, and, in simplifying those mechanisms, consider how applications might be built differently by assembling them out of communicating parts.  I realize there are lots of approaches to these issues already. I am not promising ground breaking research here; just a running dialogue while I “scratch an itch”, so to speak.  Hopefully, in addition to the blog, you will see working code in my github repositories that will be useful in some context.</p>
+        <p>As I have stated in a previous post, this blog and the associated code <a href="https://github.com/bkarr/libshr" target="_blank" rel="external">project</a> are a kind of experiment or exploration to satisfy my curiousity about ways to actually build applications using multiple languages.  Because the code is open source available on Github, I have altered my personal style that I have used for much of my career.  Some of the changes are because they are just better options and my changing is just long overdue.  Most though are adjustments to accomodate what is common or recommended practice in open source projects, and at least one change is an outright innovation on my part which may not survive.</p>
+<p>The first major change I have undertaken relates to exiting from functions.  I was educated in the 1980’s at a time when formal methods were under development and seen as the future direction for development.  At that time, in order to facilitate formal analysis, we were trained to have a single entry and exit point for all functions.  In spite of the fact that I personally never tried to perform a formal proof of my code, I continued to code in this style and reason about my code in that fashion.  With the processors of that era, it also made sense in that you could actually reason about execution order and code a straight line path of likeliest path through the code in order to be more performant.  Admittedly, that hasn’t been true probably at least a decade with out-of-order execution and pipelining, but it had become an ingrained habit.  So lately, in my code I have moved more to the style seen in more modern code bases like the Linux kernel where multiple return statements are used to exit a function as soon as possible as conditions merit to minimize nesting levels.  </p>
+<p>A rather simpler change is to use the Kernighan technique for brace placement that places the opening brace at the end of a line.  For years, I practiced aligning braces in the same column, but for this project I adopted the reasoning that it is more important for understanding to get more lines of code on screen.  So I am cutting down on lines by placing braces at end of lines and reducing the number of empty lines, as well as, trying to keep functions at 40-50 lines so they fit on one screen.  </p>
+<p>The other formatting change that I made was to accomodate recommended practice to limit line length to 80 characters.  In my daily work, I wouldn’t pay that much attention to it since screen width hasn’t been an issue for some time.  I would never create a line that was a totally unreasonable 200 or 300 characters long, but if a long function declaration or an if statement with multiple tests went well over 80 columns I wouldn’t worry about it.  I have to say that for the most part limiting myself to 80 columns has been easier than I would have thought using these practices, and I have to say for the most part I am pleased with the clean appearance of my code.  </p>
+<p>The one innovation I am experimenting with based on the 80 column limitation is putting arguments in function declarations on separate lines.  After trying it for a while, I quite like the technique for being able to comment each argument in line, adding and removing arguments, and for the effect of making the arguments similar to local variable declarations.  I can now see how the original function declarations in C came about, even though when I learned about them I thought them rather archaic.  The one downside that will probably cause me to move away from this style and revert back to my normal practice is that when I set breakpoints in gdb the function name doesn’t show up when the breakpoint is reached and all I see is the closing paren/opening brace line.  So much for “good ideas”.</p>
+<p>The one thing that I did not change was the use of spaces rather than tabs.  I entertained moving to tabs rather than spaces, but the rules for formatting things across multiple lines such that things would not be a mess no matter what the tab width was seemed like more mental overhead than I felt like taking on.  Set space width is just simpler and guaranteed to produce a clean layout with no extra thought, so I am sticking with it.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bkarr.github.io/2015/04/13/Why-this-blog/" data-id="ci9efndmw0001gn2weosnup5n" class="article-share-link">Share</a>
+      <a data-url="http://bkarr.github.io/2015/05/06/Code-Aesthetics/" data-id="ci9efol7x0000h82wwdpbv035" class="article-share-link">Share</a>
       
-        <a href="http://bkarr.github.io/2015/04/13/Why-this-blog/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://bkarr.github.io/2015/05/06/Code-Aesthetics/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blogging/">blogging</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coding-style/">coding style</a></li></ul>
 
     </footer>
   </div>
   
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/04/30/Problem-with-Michael-Scott-Lock-Free-Queue/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Problem With Michael-Scott Lock-Free Queue</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
-  
-  
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 </section>
         
           <aside id="sidebar">
@@ -217,11 +232,13 @@
 <script>
   var disqus_shortname = 'polyglotplayground';
   
+  var disqus_url = 'http://bkarr.github.io/2015/05/06/Code-Aesthetics/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

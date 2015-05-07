@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://bkarr.github.io/"/>
-  <updated>2015-05-01T00:49:26.457Z</updated>
+  <updated>2015-05-07T17:18:03.254Z</updated>
   <id>http://bkarr.github.io/</id>
   
   <author>
@@ -13,6 +13,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Code Aesthetics]]></title>
+    <link href="http://bkarr.github.io/2015/05/06/Code-Aesthetics/"/>
+    <id>http://bkarr.github.io/2015/05/06/Code-Aesthetics/</id>
+    <published>2015-05-06T16:11:33.000Z</published>
+    <updated>2015-05-07T17:18:03.254Z</updated>
+    <content type="html"><![CDATA[<p>As I have stated in a previous post, this blog and the associated code <a href="https://github.com/bkarr/libshr" target="_blank" rel="external">project</a> are a kind of experiment or exploration to satisfy my curiousity about ways to actually build applications using multiple languages.  Because the code is open source available on Github, I have altered my personal style that I have used for much of my career.  Some of the changes are because they are just better options and my changing is just long overdue.  Most though are adjustments to accomodate what is common or recommended practice in open source projects, and at least one change is an outright innovation on my part which may not survive.</p>
+<p>The first major change I have undertaken relates to exiting from functions.  I was educated in the 1980’s at a time when formal methods were under development and seen as the future direction for development.  At that time, in order to facilitate formal analysis, we were trained to have a single entry and exit point for all functions.  In spite of the fact that I personally never tried to perform a formal proof of my code, I continued to code in this style and reason about my code in that fashion.  With the processors of that era, it also made sense in that you could actually reason about execution order and code a straight line path of likeliest path through the code in order to be more performant.  Admittedly, that hasn’t been true probably at least a decade with out-of-order execution and pipelining, but it had become an ingrained habit.  So lately, in my code I have moved more to the style seen in more modern code bases like the Linux kernel where multiple return statements are used to exit a function as soon as possible as conditions merit to minimize nesting levels.  </p>
+<p>A rather simpler change is to use the Kernighan technique for brace placement that places the opening brace at the end of a line.  For years, I practiced aligning braces in the same column, but for this project I adopted the reasoning that it is more important for understanding to get more lines of code on screen.  So I am cutting down on lines by placing braces at end of lines and reducing the number of empty lines, as well as, trying to keep functions at 40-50 lines so they fit on one screen.  </p>
+<p>The other formatting change that I made was to accomodate recommended practice to limit line length to 80 characters.  In my daily work, I wouldn’t pay that much attention to it since screen width hasn’t been an issue for some time.  I would never create a line that was a totally unreasonable 200 or 300 characters long, but if a long function declaration or an if statement with multiple tests went well over 80 columns I wouldn’t worry about it.  I have to say that for the most part limiting myself to 80 columns has been easier than I would have thought using these practices, and I have to say for the most part I am pleased with the clean appearance of my code.  </p>
+<p>The one innovation I am experimenting with based on the 80 column limitation is putting arguments in function declarations on separate lines.  After trying it for a while, I quite like the technique for being able to comment each argument in line, adding and removing arguments, and for the effect of making the arguments similar to local variable declarations.  I can now see how the original function declarations in C came about, even though when I learned about them I thought them rather archaic.  The one downside that will probably cause me to move away from this style and revert back to my normal practice is that when I set breakpoints in gdb the function name doesn’t show up when the breakpoint is reached and all I see is the closing paren/opening brace line.  So much for “good ideas”.</p>
+<p>The one thing that I did not change was the use of spaces rather than tabs.  I entertained moving to tabs rather than spaces, but the rules for formatting things across multiple lines such that things would not be a mess no matter what the tab width was seemed like more mental overhead than I felt like taking on.  Set space width is just simpler and guaranteed to produce a clean layout with no extra thought, so I am sticking with it.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>As I have stated in a previous post, this blog and the associated code <a href="https://github.com/bkarr/libshr" target="_blank" rel="ext]]>
+    </summary>
+    
+      <category term="coding style" scheme="http://bkarr.github.io/tags/coding-style/"/>
+    
+      <category term="Opinion" scheme="http://bkarr.github.io/categories/Opinion/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Problem With Michael-Scott Lock-Free Queue]]></title>
