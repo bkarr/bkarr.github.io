@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Development Plans | Polyglot Playground</title>
+  <title>To TDD, Or Not? | Polyglot Playground</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="As I said in my previous post, I would like to explore alternative means of communicating between programs written in different languages, and then using those components to assemble working applicati">
+  <meta name="description" content="One of the things bouncing around the Internet around the time I began to consider starting a blog was the debate over test driven development (TDD) as a measure of professionalism.  I find I am an em">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Development Plans">
-<meta property="og:url" content="http://bkarr.github.io/2015/04/14/Development-Plans/index.html">
+<meta property="og:title" content="To TDD, Or Not?">
+<meta property="og:url" content="http://bkarr.github.io/2015/05/07/To-TDD-Or-Not/index.html">
 <meta property="og:site_name" content="Polyglot Playground">
-<meta property="og:description" content="As I said in my previous post, I would like to explore alternative means of communicating between programs written in different languages, and then using those components to assemble working applicati">
+<meta property="og:description" content="One of the things bouncing around the Internet around the time I began to consider starting a blog was the debate over test driven development (TDD) as a measure of professionalism.  I find I am an em">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Development Plans">
-<meta name="twitter:description" content="As I said in my previous post, I would like to explore alternative means of communicating between programs written in different languages, and then using those components to assemble working applicati">
+<meta name="twitter:title" content="To TDD, Or Not?">
+<meta name="twitter:description" content="One of the things bouncing around the Internet around the time I began to consider starting a blog was the debate over test driven development (TDD) as a measure of professionalism.  I find I am an em">
   
     <link rel="alternative" href="/atom.xml" title="Polyglot Playground" type="application/atom+xml">
   
@@ -65,14 +65,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Development-Plans" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-To-TDD-Or-Not" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/04/14/Development-Plans/" class="article-date">
-  <time datetime="2015-04-14T23:08:59.000Z" itemprop="datePublished">Apr 14 2015</time>
+    <a href="/2015/05/07/To-TDD-Or-Not/" class="article-date">
+  <time datetime="2015-05-07T17:22:35.000Z" itemprop="datePublished">May 7 2015</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Plans/">Plans</a>
+    <a class="article-category-link" href="/categories/Opinion/">Opinion</a>
   </div>
 
   </div>
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Development Plans
+      To TDD, Or Not?
     </h1>
   
 
@@ -91,49 +91,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>As I said in my previous post, I would like to explore alternative means of communicating between programs written in different languages, and then using those components to assemble working applications.  </p>
-<p>I see three major steps to this effort:</p>
-<ul>
-<li>develop data structures in shared memory to simplify interprocess communication in C</li>
-<li>use foreign function interfaces in various languages to use those data structures</li>
-<li>develop scripting to assemble programs written in various languages to assemble working applications</li>
-</ul>
-<p>Because there are several shared memory data structures I have in mind, I do not intend to complete each step before proceeding to the next. Rather, I intend to iteratively go through these steps for each data structure.  For example, the first data structure I am building is a new, improved version of the interprocess queue that is simpler to use and much more functional than OS based implementations currently available.  It would be quite useful to at least partially complete steps two and three before moving on to the next data structure.  In fact, the majority of the benefit will come from completing those steps for the shared memory queue.</p>
-<p>The three data structures I have in mind at this point, all to go in the same library, are as follows:</p>
-<ul>
-<li>shared memory queue that can grow dynamically and has no limits on message sizes</li>
-<li>shared memory allocator that allows dynamically allocating portions of memory that can be referenced through a passed token</li>
-<li>shared memory map for storing and accessing key/value pairs using arbitrary data as keys and values</li>
-</ul>
-<p>I am beginning with the shared memory queue because that allows me to pass messages between programs and simulate both Actor and communicating sequential processes (CSP) models of computation.  The shared memory allocator is an idea that occurred to me while considering how I would practically build applications using the queue.  The queue is designed to handle messages of arbitrary length, but the occasional large message would cause all queues it was placed on to grow to an unnecessary size for just that one message.  My solution is allocate space in shared memory associated with a token that can be passed via the queue and to allow the safe access of that memory through the use of the token.  Lastly, the associative shared memory map is on the agenda as a generally useful data structure for building multiple types of applications.  The Lua language, for example, demonstrates the utility of the associative array, or table in its vernacular, for implementing multiple software development paradigms.</p>
+        <p>One of the things bouncing around the Internet around the time I began to consider starting a blog was the debate over test driven development (TDD) as a measure of professionalism.  I find I am an empiricist when it comes to arguing about development methodology after so many years of doing devleopment, which means I consider much of what is debated as vain efforts in convincing people to have the “correct opinion.”  Yet, as with most things, I do have to make a decision about what I personally am going to practice in my personal effort to produce high quality code.</p>
+<p>In addition, because of the type of code I tend to write, I have issues with some practices such as code reviews since reviewing the multithreaded, concurrent programs and data structures I write requires a skill set and level of expertise that is not common among my peers or developers in general.  It isn’t that code reviews don’t help, but I find that most of the value comes not from others input, comments, or finding errors, but, rather, from the effort I have to undertake to explain the code which causes me to examine it in depth in order to be able to explicate it to others.  So I am constantly looking for techniques that help me to examine, analyze, and force me to thoroughly walk through my own code in order for it to be as correct as possible.  With my current <a href="https://github.com/bkarr/libshr" target="_blank" rel="external">project</a>, I find I am even more on my own since it hasn’t attracted much attention, and I find myself even more dependent on my own self review.</p>
+<p>So as I previously alluded, I find the arguments over TDD largely evidence free, and, therefore, largely arguments over opninions and preferences.  To make TDD a hallmark of professionalism, I find a ridiculous assertion that reduces the practice of programming to mere domatic religion.  The only measure of professionalism I find that makes sense is the actual production of high quality, error free code, regardless of how it was produced.  That does not mean don’t find value in unit testing and some value in writing tests before writing code, but there is very little actual evidence that TDD itself produces well-designed and correct code over and above any other practice.  Frankly, the more I listen to some of Leslie Lamport’s recent <a href="https://www.youtube.com/watch?v=6QsTfL-uXd8&amp;feature=youtu.be" target="_blank" rel="external">presentations</a> about specifying systems and thinking before coding, I find his views on what should be practiced much more compelling as a measure of professionalism, even though I question how well they would scale as formal methods haven’t proven economical in practice for most development efforts.</p>
+<p>As it stands, my current practice is to mix writing unit tests both before and after coding.  I find that writing some simple, initial unit tests to exercise the major functions on their “happy path” the fastest way to get something working, which gives that initial, positive feedback I think that programmers find so motivating.  I also find, though, a lot of value in writing most of my unit tests after writing the majority of the code as it forces me to examine the various paths through the code in a thorough fashion.  I find the activity of writing thorough unit tests that exercise especially the error paths a valuable exercise as a form of self-directed code review.  </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bkarr.github.io/2015/04/14/Development-Plans/" data-id="ci9fx3kgb000qyg2wd1oxifsv" class="article-share-link">Share</a>
+      <a data-url="http://bkarr.github.io/2015/05/07/To-TDD-Or-Not/" data-id="ci9fx3k500006yg2wtk3e9nvz" class="article-share-link">Share</a>
       
-        <a href="http://bkarr.github.io/2015/04/14/Development-Plans/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://bkarr.github.io/2015/05/07/To-TDD-Or-Not/#disqus_thread" class="article-comment-link">Comments</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/methodology/">methodology</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/practice/">practice</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2015/04/16/Shared-Memory-Interprocess-Queue/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Shared Memory Interprocess Queue
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/04/13/Why-this-blog/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/05/06/Code-Aesthetics/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Why this blog?</div>
+      <div class="article-nav-title">Code Aesthetics</div>
     </a>
   
 </nav>
@@ -248,7 +230,7 @@
 <script>
   var disqus_shortname = 'polyglotplayground';
   
-  var disqus_url = 'http://bkarr.github.io/2015/04/14/Development-Plans/';
+  var disqus_url = 'http://bkarr.github.io/2015/05/07/To-TDD-Or-Not/';
   
   (function(){
     var dsq = document.createElement('script');
