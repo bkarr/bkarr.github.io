@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://bkarr.github.io/"/>
-  <updated>2015-05-07T18:16:28.470Z</updated>
+  <updated>2015-12-12T04:40:46.720Z</updated>
   <id>http://bkarr.github.io/</id>
   
   <author>
@@ -13,6 +13,23 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Back-To-Blogging]]></title>
+    <link href="http://bkarr.github.io/2015/12/11/Back-To-Blogging/"/>
+    <id>http://bkarr.github.io/2015/12/11/Back-To-Blogging/</id>
+    <published>2015-12-12T04:33:44.000Z</published>
+    <updated>2015-12-12T04:40:46.720Z</updated>
+    <content type="html"><![CDATA[<p>I have not updated this blog for quite a while.  I read something somewhere about blogging that in order to keep it up a person needs to blog consistently and keep it short.  Otherwise, the effort to blog becomes overwhelming, and the blog quickly dies out.</p>
+<p>I have definitely fallen into this trap.  Most of my initial entries were quite involved and were a lot of effort.  Now I will try and keep things quick and short for the most part.  I will occasionally add longer, more technical pieces when justified, but for right now I will concentrate on just building up a habit of writing regularly.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I have not updated this blog for quite a while.  I read something somewhere about blogging that in order to keep it up a person needs to ]]>
+    </summary>
+    
+      <category term="blogging" scheme="http://bkarr.github.io/tags/blogging/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[To TDD, Or Not?]]></title>
