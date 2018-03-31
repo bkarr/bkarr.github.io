@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Code Aesthetics | Polyglot Playground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="As I have stated in a previous post, this blog and the associated code project are a kind of experiment or exploration to satisfy my curiousity about ways to actually build applications using multiple">
+<meta name="keywords" content="coding style">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Code Aesthetics">
+<meta property="og:url" content="http://bkarr.github.io/2015/05/06/Code-Aesthetics/index.html">
+<meta property="og:site_name" content="Polyglot Playground">
+<meta property="og:description" content="As I have stated in a previous post, this blog and the associated code project are a kind of experiment or exploration to satisfy my curiousity about ways to actually build applications using multiple">
+<meta property="og:locale" content="en-us">
+<meta property="og:updated_time" content="2018-03-31T22:33:27.141Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Code Aesthetics">
+<meta name="twitter:description" content="As I have stated in a previous post, this blog and the associated code project are a kind of experiment or exploration to satisfy my curiousity about ways to actually build applications using multiple">
+  
+    <link rel="alternative" href="/atom.xml" title="Polyglot Playground" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Polyglot Playground</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Quotes">Quotes</a>
+        
+          <a class="main-nav-link" href="https://github.com/bkarr?tab=repositories">Repositories</a>
+        
+          <a class="main-nav-link" href="/About">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://bkarr.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Code-Aesthetics" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/06/Code-Aesthetics/" class="article-date">
+  <time datetime="2015-05-06T16:11:33.000Z" itemprop="datePublished">May 6 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Opinion/">Opinion</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Code Aesthetics
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>As I have stated in a previous post, this blog and the associated code <a href="https://github.com/bkarr/libshr" target="_blank" rel="noopener">project</a> are a kind of experiment or exploration to satisfy my curiousity about ways to actually build applications using multiple languages.  Because the code is open source available on Github, I have altered my personal style that I have used for much of my career.  Some of the changes are because they are just better options and my changing is just long overdue.  Most though are adjustments to accomodate what is common or recommended practice in open source projects, and at least one change is an outright innovation on my part which may not survive.</p>
+<p>The first major change I have undertaken relates to exiting from functions.  I was educated in the 1980’s at a time when formal methods were under development and seen as the future direction for development.  At that time, in order to facilitate formal analysis, we were trained to have a single entry and exit point for all functions.  In spite of the fact that I personally never tried to perform a formal proof of my code, I continued to code in this style and reason about my code in that fashion.  With the processors of that era, it also made sense in that you could actually reason about execution order and code a straight line path of likeliest path through the code in order to be more performant.  Admittedly, that hasn’t been true probably at least a decade with out-of-order execution and pipelining, but it had become an ingrained habit.  So lately, in my code I have moved more to the style seen in more modern code bases like the Linux kernel where multiple return statements are used to exit a function as soon as possible as conditions merit to minimize nesting levels.  </p>
+<p>A rather simpler change is to use the Kernighan technique for brace placement that places the opening brace at the end of a line.  For years, I practiced aligning braces in the same column, but for this project I adopted the reasoning that it is more important for understanding to get more lines of code on screen.  So I am cutting down on lines by placing braces at end of lines and reducing the number of empty lines, as well as, trying to keep functions at 40-50 lines so they fit on one screen.  </p>
+<p>The other formatting change that I made was to accomodate recommended practice to limit line length to 80 characters.  In my daily work, I wouldn’t pay that much attention to it since screen width hasn’t been an issue for some time.  I would never create a line that was a totally unreasonable 200 or 300 characters long, but if a long function declaration or an if statement with multiple tests went well over 80 columns I wouldn’t worry about it.  I have to say that for the most part limiting myself to 80 columns has been easier than I would have thought using these practices, and I have to say for the most part I am pleased with the clean appearance of my code.  </p>
+<p>The one innovation I am experimenting with based on the 80 column limitation is putting arguments in function declarations on separate lines.  After trying it for a while, I quite like the technique for being able to comment each argument in line, adding and removing arguments, and for the effect of making the arguments similar to local variable declarations.  I can now see how the original function declarations in C came about, even though when I learned about them I thought them rather archaic.  The one downside that will probably cause me to move away from this style and revert back to my normal practice is that when I set breakpoints in gdb the function name doesn’t show up when the breakpoint is reached and all I see is the closing paren/opening brace line.  So much for “good ideas”.</p>
+<p>The one thing that I did not change was the use of spaces rather than tabs.  I entertained moving to tabs rather than spaces, but the rules for formatting things across multiple lines such that things would not be a mess no matter what the tab width was seemed like more mental overhead than I felt like taking on.  Set space width is just simpler and guaranteed to produce a clean layout with no extra thought, so I am sticking with it.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bkarr.github.io/2015/05/06/Code-Aesthetics/" data-id="cjffylu6e0004vqx03fsbsa5s" class="article-share-link">Share</a>
+      
+        <a href="http://bkarr.github.io/2015/05/06/Code-Aesthetics/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coding-style/">coding style</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/05/07/To-TDD-Or-Not/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          To TDD, Or Not?
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/04/30/Problem-with-Michael-Scott-Lock-Free-Queue/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Problem With Michael-Scott Lock-Free Queue</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Design/">Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Opinion/">Opinion</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Personal/">Personal</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Plans/">Plans</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blogging/">blogging</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coding-style/">coding style</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/critbit-tree/">critbit tree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lock-free-queue/">lock-free queue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/methodology/">methodology</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/practice/">practice</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/semaphore/">semaphore</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/blogging/" style="font-size: 10px;">blogging</a> <a href="/tags/coding-style/" style="font-size: 10px;">coding style</a> <a href="/tags/critbit-tree/" style="font-size: 10px;">critbit tree</a> <a href="/tags/lock-free-queue/" style="font-size: 20px;">lock-free queue</a> <a href="/tags/methodology/" style="font-size: 10px;">methodology</a> <a href="/tags/practice/" style="font-size: 10px;">practice</a> <a href="/tags/semaphore/" style="font-size: 10px;">semaphore</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/05/07/To-TDD-Or-Not/">To TDD, Or Not?</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/06/Code-Aesthetics/">Code Aesthetics</a>
+          </li>
+        
+          <li>
+            <a href="/2015/04/30/Problem-with-Michael-Scott-Lock-Free-Queue/">Problem With Michael-Scott Lock-Free Queue</a>
+          </li>
+        
+          <li>
+            <a href="/2015/04/16/Shared-Memory-Interprocess-Queue/">Shared Memory Interprocess Queue</a>
+          </li>
+        
+          <li>
+            <a href="/2015/04/14/Development-Plans/">Development Plans</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Bryan Karr<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Quotes" class="mobile-nav-link">Quotes</a>
+  
+    <a href="https://github.com/bkarr?tab=repositories" class="mobile-nav-link">Repositories</a>
+  
+    <a href="/About" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'polyglotplayground';
+  
+  var disqus_url = 'http://bkarr.github.io/2015/05/06/Code-Aesthetics/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

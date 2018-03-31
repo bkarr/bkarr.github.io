@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: Algorithms | Polyglot Playground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Exploring alternatives in building reliable, scaleable, multilanguage, multicore services in the cloud.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Polyglot Playground">
+<meta property="og:url" content="http://bkarr.github.io/categories/Algorithms/index.html">
+<meta property="og:site_name" content="Polyglot Playground">
+<meta property="og:description" content="Exploring alternatives in building reliable, scaleable, multilanguage, multicore services in the cloud.">
+<meta property="og:locale" content="en-us">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Polyglot Playground">
+<meta name="twitter:description" content="Exploring alternatives in building reliable, scaleable, multilanguage, multicore services in the cloud.">
+  
+    <link rel="alternative" href="/atom.xml" title="Polyglot Playground" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Polyglot Playground</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Quotes">Quotes</a>
+        
+          <a class="main-nav-link" href="https://github.com/bkarr?tab=repositories">Repositories</a>
+        
+          <a class="main-nav-link" href="/About">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://bkarr.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Problem-with-Michael-Scott-Lock-Free-Queue" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/30/Problem-with-Michael-Scott-Lock-Free-Queue/" class="article-date">
+  <time datetime="2015-05-01T00:42:52.000Z" itemprop="datePublished">Apr 30 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/30/Problem-with-Michael-Scott-Lock-Free-Queue/">Problem With Michael-Scott Lock-Free Queue</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>As I stated in the previous post, the actual queue is built based on the lock-free queue implementation described by Maged Michael and Michael Scott in this <a href="http://www.research.ibm.com/people/m/michael/podc-1996.pdf" target="_blank" rel="noopener">paper</a>, and  that it is probably the best known and most widely used lock-free queue algorithm.  Doug Lea used it as the basis for concurrent linke queues in java.util.concurrent libraries for Java.  In the paper, the authors address a major problem with lock-free programming known as the ABA problem, where between the read and update another process changes the value from A to B and back to A so that the queue is not in the same state though the pointers in first process have not changed.  The well-known solution is to add a generation counter and use a double-word compare_and_swap instruction, which is what my implementation does.  The Java implementation does not have the same issue because of garbage collection since the first thread would hold a reference to A it could never be reused.  The shared queue uses the counter and double-word CAS instruction to prevent ABA issues since it is implemented in shared memory with no possibility of garbage collection.</p>
+<p>While stress testing the shared memory queue, I found another problem with the use of the Michael-Scott algorithm in addition to the ABA problem.  I stumbled across the problem while stress testing mostly because I use multiple queues using the same memory in close proximity starting at the same initial state for the generational counters, which dramatically increased the probability of occurrence.  The problematic algorithm below is from the <a href="http://www.research.ibm.com/people/m/michael/podc-1996.pdf" target="_blank" rel="noopener">paper</a>:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">enqueue(Q: pointer to <span class="built_in">queue</span> t, value: data type)</span><br><span class="line">E1:     node = <span class="keyword">new</span> node()</span><br><span class="line">E2:     node–&gt;value = value</span><br><span class="line">E3:     node–&gt;next.ptr = <span class="literal">NULL</span></span><br><span class="line">E4:     loop</span><br><span class="line">E5:         tail = Q–&gt;Tail</span><br><span class="line">E6:         next = tail.ptr–&gt;next</span><br><span class="line">E7:         <span class="keyword">if</span> tail == Q–&gt;Tail</span><br><span class="line">E8:             <span class="keyword">if</span> next.ptr == <span class="literal">NULL</span></span><br><span class="line">E9:                 <span class="keyword">if</span> CAS(&amp;tail.ptr–&gt;next, next, &lt;node, next.count+<span class="number">1</span>&gt;)</span><br><span class="line">E10:                    <span class="keyword">break</span></span><br><span class="line">E11:                endif</span><br><span class="line">E12:            <span class="keyword">else</span></span><br><span class="line">E13:                CAS(&amp;Q–&gt;Tail, tail, &lt;next.ptr, tail.count+<span class="number">1</span>&gt;)</span><br><span class="line">E14:            endif</span><br><span class="line">E15:        endif</span><br><span class="line">E16:    endloop</span><br><span class="line">E17:    CAS(&amp;Q–&gt;Tail, tail, &lt;node, tail.count+<span class="number">1</span>&gt;)</span><br></pre></td></tr></table></figure>
+<p>The problem begins after line E7 where an executing process is suspended before the CAS at line E9, either before or after line E8.  The following diagram illustrates the steps that can occur with concurrently executing processes:</p>
+<img src="/images/M-S_queue_prob.jpg">
+<p>Step 1 for process 1 begins after line E7 where it gets suspended while attempting to add an item at the end of queue 1.  At that point, another process can remove the items on the queue including item B which is the tail item for process 1.  Then if item B is added to the end of queue 2, it looks to be in the same state as it was in the end of queue 1.  If the generation counters for the two queues contain the same value, for instance because the items are bouncing between the queues, process 1 will succeed when it resumes and performs the CAS at line E9.  Line E17 will fail because the tail has changed, so the item is incompletely on queue 2 instead of queue 1 and the queue 2 tail is not advanced correctly.  I believe the Java implementation is not protected from this issue either based on the code I downloaded from Doug Lea’s <a href="http://http://gee.cs.oswego.edu/dl/concurrency-interest/index.html" target="_blank" rel="noopener">homepage</a> if the next field is set to null for any reason after being removed from queue.</p>
+<p>I came up with two alternative solutions to the problem.  The simpler one for my shared memory queue implementation was to intialize the generation counters to separate ranges of integer values that would not likely overlap since it is based on a 64-bit architecture where the integers will not wrap.  Technically one range could end up overlapping the other, in which case the problem would occur again, but I make the ranges so far apart that it would be almost impossible.  The other alternative is to use a unique value as the end of queue value in the next field instead of null, which would also be needed for Java.  That could be the parent queue structure address, for instance, or some empty node value allocated for each queue, but the only requirement is that it be unique for each queue instance.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bkarr.github.io/2015/04/30/Problem-with-Michael-Scott-Lock-Free-Queue/" data-id="cjffylu6o000evqx04x68z6xn" class="article-share-link">Share</a>
+      
+        <a href="http://bkarr.github.io/2015/04/30/Problem-with-Michael-Scott-Lock-Free-Queue/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lock-free-queue/">lock-free queue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Design/">Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Opinion/">Opinion</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Personal/">Personal</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Plans/">Plans</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blogging/">blogging</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coding-style/">coding style</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/critbit-tree/">critbit tree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lock-free-queue/">lock-free queue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/methodology/">methodology</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/practice/">practice</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/semaphore/">semaphore</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/blogging/" style="font-size: 10px;">blogging</a> <a href="/tags/coding-style/" style="font-size: 10px;">coding style</a> <a href="/tags/critbit-tree/" style="font-size: 10px;">critbit tree</a> <a href="/tags/lock-free-queue/" style="font-size: 20px;">lock-free queue</a> <a href="/tags/methodology/" style="font-size: 10px;">methodology</a> <a href="/tags/practice/" style="font-size: 10px;">practice</a> <a href="/tags/semaphore/" style="font-size: 10px;">semaphore</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/05/07/To-TDD-Or-Not/">To TDD, Or Not?</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/06/Code-Aesthetics/">Code Aesthetics</a>
+          </li>
+        
+          <li>
+            <a href="/2015/04/30/Problem-with-Michael-Scott-Lock-Free-Queue/">Problem With Michael-Scott Lock-Free Queue</a>
+          </li>
+        
+          <li>
+            <a href="/2015/04/16/Shared-Memory-Interprocess-Queue/">Shared Memory Interprocess Queue</a>
+          </li>
+        
+          <li>
+            <a href="/2015/04/14/Development-Plans/">Development Plans</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Bryan Karr<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Quotes" class="mobile-nav-link">Quotes</a>
+  
+    <a href="https://github.com/bkarr?tab=repositories" class="mobile-nav-link">Repositories</a>
+  
+    <a href="/About" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'polyglotplayground';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

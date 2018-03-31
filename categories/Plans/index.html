@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: Plans | Polyglot Playground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Exploring alternatives in building reliable, scaleable, multilanguage, multicore services in the cloud.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Polyglot Playground">
+<meta property="og:url" content="http://bkarr.github.io/categories/Plans/index.html">
+<meta property="og:site_name" content="Polyglot Playground">
+<meta property="og:description" content="Exploring alternatives in building reliable, scaleable, multilanguage, multicore services in the cloud.">
+<meta property="og:locale" content="en-us">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Polyglot Playground">
+<meta name="twitter:description" content="Exploring alternatives in building reliable, scaleable, multilanguage, multicore services in the cloud.">
+  
+    <link rel="alternative" href="/atom.xml" title="Polyglot Playground" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Polyglot Playground</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Quotes">Quotes</a>
+        
+          <a class="main-nav-link" href="https://github.com/bkarr?tab=repositories">Repositories</a>
+        
+          <a class="main-nav-link" href="/About">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://bkarr.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Development-Plans" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/14/Development-Plans/" class="article-date">
+  <time datetime="2015-04-14T23:08:59.000Z" itemprop="datePublished">Apr 14 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Plans/">Plans</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/14/Development-Plans/">Development Plans</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>As I said in my previous post, I would like to explore alternative means of communicating between programs written in different languages, and then using those components to assemble working applications.  </p>
+<p>I see three major steps to this effort:</p>
+<ul>
+<li>develop data structures in shared memory to simplify interprocess communication in C</li>
+<li>use foreign function interfaces in various languages to use those data structures</li>
+<li>develop scripting to assemble programs written in various languages to assemble working applications</li>
+</ul>
+<p>Because there are several shared memory data structures I have in mind, I do not intend to complete each step before proceeding to the next. Rather, I intend to iteratively go through these steps for each data structure.  For example, the first data structure I am building is a new, improved version of the interprocess queue that is simpler to use and much more functional than OS based implementations currently available.  It would be quite useful to at least partially complete steps two and three before moving on to the next data structure.  In fact, the majority of the benefit will come from completing those steps for the shared memory queue.</p>
+<p>The three data structures I have in mind at this point, all to go in the same library, are as follows:</p>
+<ul>
+<li>shared memory queue that can grow dynamically and has no limits on message sizes</li>
+<li>shared memory allocator that allows dynamically allocating portions of memory that can be referenced through a passed token</li>
+<li>shared memory map for storing and accessing key/value pairs using arbitrary data as keys and values</li>
+</ul>
+<p>I am beginning with the shared memory queue because that allows me to pass messages between programs and simulate both Actor and communicating sequential processes (CSP) models of computation.  The shared memory allocator is an idea that occurred to me while considering how I would practically build applications using the queue.  The queue is designed to handle messages of arbitrary length, but the occasional large message would cause all queues it was placed on to grow to an unnecessary size for just that one message.  My solution is allocate space in shared memory associated with a token that can be passed via the queue and to allow the safe access of that memory through the use of the token.  Lastly, the associative shared memory map is on the agenda as a generally useful data structure for building multiple types of applications.  The Lua language, for example, demonstrates the utility of the associative array, or table in its vernacular, for implementing multiple software development paradigms.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://bkarr.github.io/2015/04/14/Development-Plans/" data-id="cjffylu6g0005vqx03k3yqo5c" class="article-share-link">Share</a>
+      
+        <a href="http://bkarr.github.io/2015/04/14/Development-Plans/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Design/">Design</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Opinion/">Opinion</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Personal/">Personal</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Plans/">Plans</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blogging/">blogging</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coding-style/">coding style</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/critbit-tree/">critbit tree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lock-free-queue/">lock-free queue</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/methodology/">methodology</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/practice/">practice</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/semaphore/">semaphore</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/blogging/" style="font-size: 10px;">blogging</a> <a href="/tags/coding-style/" style="font-size: 10px;">coding style</a> <a href="/tags/critbit-tree/" style="font-size: 10px;">critbit tree</a> <a href="/tags/lock-free-queue/" style="font-size: 20px;">lock-free queue</a> <a href="/tags/methodology/" style="font-size: 10px;">methodology</a> <a href="/tags/practice/" style="font-size: 10px;">practice</a> <a href="/tags/semaphore/" style="font-size: 10px;">semaphore</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/05/07/To-TDD-Or-Not/">To TDD, Or Not?</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/06/Code-Aesthetics/">Code Aesthetics</a>
+          </li>
+        
+          <li>
+            <a href="/2015/04/30/Problem-with-Michael-Scott-Lock-Free-Queue/">Problem With Michael-Scott Lock-Free Queue</a>
+          </li>
+        
+          <li>
+            <a href="/2015/04/16/Shared-Memory-Interprocess-Queue/">Shared Memory Interprocess Queue</a>
+          </li>
+        
+          <li>
+            <a href="/2015/04/14/Development-Plans/">Development Plans</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Bryan Karr<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Quotes" class="mobile-nav-link">Quotes</a>
+  
+    <a href="https://github.com/bkarr?tab=repositories" class="mobile-nav-link">Repositories</a>
+  
+    <a href="/About" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'polyglotplayground';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
