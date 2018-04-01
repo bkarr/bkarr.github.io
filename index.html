@@ -96,13 +96,13 @@
       
         <p>I recently discovered a new technique for reviewing my own code.  Previously, I had the experience of flowcharting algorithms for two different patent applications.  While producing the diagrams, the process of converting the code to a different form caused me to find bugs in both cases.  The problem with flowcharts, though, is the constant fiddling with the graphical representation and adjusting things to fit in the space or how best to split the diagram when it does not fit in a viewable area.  Because it had been so successful in forcing me to review my code at a more thorough level, I have been on the look out for something similar that would allow me put the code through an essentially isomorphic transformation without the complexity and overhead of a graphical layout to get the same benefit.</p>
 <p>I came across a <a href="http://webhome.cs.uvic.ca/~vanemden/Publications/matrixCode.pdf" target="_blank" rel="noopener">paper</a> by Maarten H. van Emden that uses a matrix to describe the state transitions that take place in the code where the matrix represents a dual-state machine, where both the control flow and the data state are represented.  I modified his method somewhat to adapt for use in a spreadsheet.  He added the states starting from upper right going down and to the left.  For a spreadsheet, it works much better to go from upper left going down and to the right.  Maarten showed in his paper how to generate working C or Java code from the matrix, but I went the other way by converting existing C code to a matrix.  The effort to convert my code to another form forced me to think through the code to a degree where I found numerous errors in the code I had previously missed.  These included errors that passed the unit tests, working correctly in a single thread, but entirely wrong from a concurrency standpoint.</p>
-<p>The other advantage was that it also allowed me to review the code in terms of its complexity, namely the number of states and state transitions involved.  I found that I needed to reduce the number of states to a reasonable number that would fit on a single spreadsheet tab required refactoring the functions, thus improving the level of abstraction and greatly simplifying the code.  The results can be seen in my current github <a href="https://github.com/bkarr/libshr/tree/master/src" target="_blank" rel="noopener">repository</a>, and the spreadsheets, which are in Google Sheets, can be seen in <a href="https://drive.google.com/open?id=1wHFzNosZJax1-9bFtEya6J2KwFPGf22PRAu3l-AbzzA" target="_blank" rel="noopener">sheet1</a>, <a href="https://drive.google.com/open?id=15v1bJP8soJIYqGCjozAIoRnVIo23FMnEGkjQhsHTvyo" target="_blank" rel="noopener">sheet2</a>, and <a href="https://drive.google.com/open?id=1QtYHNG-E5evhPWW8uKpE0GdMGA72dDYa50s_IRNsctc" target="_blank" rel="noopener">sheet3</a>.</p>
-<p>I must say that this technique has helped me produce some of the best code I have ever written, both aesthetically and correctly, in which I justifiably can have a lot of confidence in.</p>
+<p>The other advantage was that it also allowed me to review the code in terms of its complexity, namely the number of states and state transitions involved.  I found that I needed to reduce the number of states (to a reasonable number that would fit on a single spreadsheet tab) required refactoring the functions, thus improving the level of abstraction and greatly simplifying the code.  The results can be seen in my current github <a href="https://github.com/bkarr/libshr/tree/master/src" target="_blank" rel="noopener">repository</a>, and the spreadsheets, which are in Google Sheets, can be seen in <a href="https://drive.google.com/open?id=1wHFzNosZJax1-9bFtEya6J2KwFPGf22PRAu3l-AbzzA" target="_blank" rel="noopener">sheet1</a>, <a href="https://drive.google.com/open?id=15v1bJP8soJIYqGCjozAIoRnVIo23FMnEGkjQhsHTvyo" target="_blank" rel="noopener">sheet2</a>, and <a href="https://drive.google.com/open?id=1QtYHNG-E5evhPWW8uKpE0GdMGA72dDYa50s_IRNsctc" target="_blank" rel="noopener">sheet3</a>.</p>
+<p>I must say that this technique has helped me produce some of the best code I have ever written, both aesthetically and correctly, in which I justifiably can have a lot of confidence.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bkarr.github.io/2018/03/31/How-I-Learned-To-Review-My-Own-Code/" data-id="cjfg4e1gp0008iox0szxr44bk" class="article-share-link">Share</a>
+      <a data-url="http://bkarr.github.io/2018/03/31/How-I-Learned-To-Review-My-Own-Code/" data-id="cjfg4i1jb0008lpx0qxx8j1vt" class="article-share-link">Share</a>
       
         <a href="http://bkarr.github.io/2018/03/31/How-I-Learned-To-Review-My-Own-Code/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -150,7 +150,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bkarr.github.io/2015/05/07/To-TDD-Or-Not/" data-id="cjfg4e1gv000eiox03c4sggcp" class="article-share-link">Share</a>
+      <a data-url="http://bkarr.github.io/2015/05/07/To-TDD-Or-Not/" data-id="cjfg4i1ji000elpx0nvm5l5b3" class="article-share-link">Share</a>
       
         <a href="http://bkarr.github.io/2015/05/07/To-TDD-Or-Not/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -200,7 +200,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bkarr.github.io/2015/05/06/Code-Aesthetics/" data-id="cjfg4e1gk0004iox0bwg55ewe" class="article-share-link">Share</a>
+      <a data-url="http://bkarr.github.io/2015/05/06/Code-Aesthetics/" data-id="cjfg4i1j50004lpx0rsyzja6d" class="article-share-link">Share</a>
       
         <a href="http://bkarr.github.io/2015/05/06/Code-Aesthetics/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -251,7 +251,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bkarr.github.io/2015/04/30/Problem-with-Michael-Scott-Lock-Free-Queue/" data-id="cjfg4e1gq0009iox0k55v9q7w" class="article-share-link">Share</a>
+      <a data-url="http://bkarr.github.io/2015/04/30/Problem-with-Michael-Scott-Lock-Free-Queue/" data-id="cjfg4i1jd0009lpx0eeem1h2l" class="article-share-link">Share</a>
       
         <a href="http://bkarr.github.io/2015/04/30/Problem-with-Michael-Scott-Lock-Free-Queue/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -306,7 +306,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bkarr.github.io/2015/04/16/Shared-Memory-Interprocess-Queue/" data-id="cjfg4e1gt000aiox060p5s3x6" class="article-share-link">Share</a>
+      <a data-url="http://bkarr.github.io/2015/04/16/Shared-Memory-Interprocess-Queue/" data-id="cjfg4i1jg000alpx005dc8oey" class="article-share-link">Share</a>
       
         <a href="http://bkarr.github.io/2015/04/16/Shared-Memory-Interprocess-Queue/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -365,7 +365,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bkarr.github.io/2015/04/14/Development-Plans/" data-id="cjfg4e1gl0005iox0psrlo17i" class="article-share-link">Share</a>
+      <a data-url="http://bkarr.github.io/2015/04/14/Development-Plans/" data-id="cjfg4i1j70005lpx0v9j4p3os" class="article-share-link">Share</a>
       
         <a href="http://bkarr.github.io/2015/04/14/Development-Plans/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -411,7 +411,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://bkarr.github.io/2015/04/13/Why-this-blog/" data-id="cjfg4e1h0000fiox011sjzgcq" class="article-share-link">Share</a>
+      <a data-url="http://bkarr.github.io/2015/04/13/Why-this-blog/" data-id="cjfg4i1jm000flpx016wc1p08" class="article-share-link">Share</a>
       
         <a href="http://bkarr.github.io/2015/04/13/Why-this-blog/#disqus_thread" class="article-comment-link">Comments</a>
       
