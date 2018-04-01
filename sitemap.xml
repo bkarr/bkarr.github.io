@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://bkarr.github.io/2018/03/31/How-I-Learned-To-Review-My-Own-Code/</loc>
+    
+    <lastmod>2018-04-01T00:07:57.753Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://bkarr.github.io/2015/05/06/Code-Aesthetics/</loc>
     
     <lastmod>2018-03-31T22:33:27.141Z</lastmod>
@@ -16,7 +23,7 @@
   </url>
   
   <url>
-    <loc>http://bkarr.github.io/2015/05/07/To-TDD-Or-Not/</loc>
+    <loc>http://bkarr.github.io/2015/04/30/Problem-with-Michael-Scott-Lock-Free-Queue/</loc>
     
     <lastmod>2018-03-31T22:33:27.141Z</lastmod>
     
@@ -30,14 +37,14 @@
   </url>
   
   <url>
-    <loc>http://bkarr.github.io/2015/04/13/Why-this-blog/</loc>
+    <loc>http://bkarr.github.io/2015/05/07/To-TDD-Or-Not/</loc>
     
     <lastmod>2018-03-31T22:33:27.141Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://bkarr.github.io/2015/04/30/Problem-with-Michael-Scott-Lock-Free-Queue/</loc>
+    <loc>http://bkarr.github.io/2015/04/13/Why-this-blog/</loc>
     
     <lastmod>2018-03-31T22:33:27.141Z</lastmod>
     
